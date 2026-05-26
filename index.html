@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
+ <!-- VK Bridge — обязательно для работы внутри VK -->
+<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -869,5 +871,14 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 
-</body>
+<script>
+  // Инициализация VK Bridge
+  if (typeof vkBridge !== 'undefined') {
+    vkBridge.send('VKWebAppInit')
+      .then(data => console.log('✅ VK Bridge готов', data))
+      .catch(err => console.error('❌ Ошибка VK Bridge:', err));
+  } else {
+    console.log('ℹ️ VK Bridge не загружен — работаем вне ВК');
+  }
+</script></body>
 </html>
