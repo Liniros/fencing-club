@@ -1,1 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фехтуют Все — Серия турниров СФК «Виктория»</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #1a0808;
+    color: #f4e4c1;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* SVG фон */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><g fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.08'><line x1='50' y1='50' x2='150' y2='150'/><line x1='150' y1='50' x2='50' y2='150'/><circle cx='100' cy='100' r='8'/><line x1='250' y1='250' x2='350' y2='350'/><line x1='350' y1='250' x2='250' y2='350'/><circle cx='300' cy='300' r='8'/><circle cx='300' cy='100' r='25'/><line x1='275' y1='100' x2='325' y2='100'/><line x1='285' y1='90' x2='315' y2='90'/><line x1='285' y1='110' x2='315' y2='110'/></g></svg>");
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /* ШАПКА — КОМПАКТНАЯ */
+  header {
+    background: linear-gradient(180deg, #2a1010 0%, #1a0808 100%);
+    padding: 25px 20px;
+    text-align: center;
+    border-bottom: 2px solid #d4af37;
+  }
+  header h1 {
+    color: #d4af37;
+    font-size: clamp(22px, 3.5vw, 32px);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+  }
+  header .subtitle {
+    color: #f4e4c1;
+    font-size: clamp(11px, 1.4vw, 13px);
+    letter-spacing: 2px;
+    opacity: 0.85;
+    margin-bottom: 5px;
+  }
+  header .club {
+    color: #d4af37;
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+  }
+  
+  /* CTA кнопка */
+  .cta-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    color: #1a0808;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 11px;
+    text-transform: uppercase;
+    border: 2px solid #d4af37;
+    transition: all 0.3s;
+    cursor: pointer;
+    font-family: Georgia, serif;
+  }
+  .cta-button:hover {
+    background: transparent;
+    color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+  }
+  
+  /* НАВИГАЦИЯ */
+  nav {
+    background: #0f0505;
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a {
+    color: #f4e4c1;
+    text-decoration: none;
+    margin: 0 15px;
+    letter-spacing: 2px;
+    font-size: 13px;
+    transition: color 0.3s;
+    display: inline-block;
+    padding: 5px 0;
+  }
+  nav a:hover { color: #d4af37; }
+  
+  /* СЕКЦИИ */
+  section {
+    padding: 35px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-title {
+    text-align: center;
+    color: #d4af37;
+    font-size: clamp(18px, 2.5vw, 24px);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-divider {
+    width: 60px;
+    height: 2px;
+    background: #d4af37;
+    margin: 0 auto 30px;
+  }
+  
+  /* ЭТАПЫ */
+  .stages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .stage-card {
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 18px 15px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .stage-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+  }
+  .stage-card .num {
+    color: #d4af37;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+  .stage-card .date {
+    color: #f4e4c1;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .stage-card .status {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  .season-label {
+    text-align: center;
+    color: #d4af37;
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin: 25px 0 15px;
+    text-transform: uppercase;
+  }
+  
+  /* ЗАЛ ЧЕМПИОНОВ */
+  .champions-section {
+    background: linear-gradient(180deg, #0f0505 0%, #1a0808 100%);
+    padding: 35px 20px;
+    margin: 0;
+    max-width: none;
+  }
+  .champions-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .champions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .champion-card {
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    border: 2px solid #d4af37;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .champion-card .crown { 
+    font-size: 32px; 
+    margin-bottom: 12px; 
+    display: block;
+  }
+  .champion-card .category {
+    color: #d4af37;
+    letter-spacing: 2px;
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  .champion-card .name {
+    color: #f4e4c1;
+    font-size: 18px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .champion-card .year {
+    color: #d4af37;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+  }
+  
+  /* РЕЙТИНГ */
+  .rating-category {
+    text-align: center;
+    color: #d4af37;
+    letter-spacing: 3px;
+    font-size: 16px;
+    margin: 30px 0 15px;
+    text-transform: uppercase;
+  }
+  .rating-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    margin-bottom: 25px;
+    font-size: 12px;
+  }
+  .rating-table th {
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+    padding: 12px 10px;
+    letter-spacing: 1px;
+    text-align: left;
+    border-bottom: 2px solid #d4af37;
+  }
+  .rating-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    color: #f4e4c1;
+  }
+  .rating-table tr:hover { background: rgba(212, 175, 55, 0.05); }
+  .place-1 { color: #d4af37; font-weight: bold; }
+  .place-2 { color: #c0c0c0; font-weight: bold; }
+  .place-3 { color: #cd7f32; font-weight: bold; }
+  
+  /* ГАЛЕРЕЯ */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .gallery-grid img:hover {
+    transform: scale(1.02);
+    border-color: #d4af37;
+  }
+  .stage-photos-title {
+    text-align: center;
+    color: #f4e4c1;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin: 30px 0 15px;
+  }
+  
+  /* КОНТАКТЫ */
+  .contacts-card {
+    max-width: 550px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 40px 25px;
+    text-align: center;
+  }
+  .contacts-card .icon { font-size: 40px; margin-bottom: 15px; }
+  .contacts-card h3 {
+    color: #d4af37;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  .contacts-card .email-block {
+    margin: 25px 0;
+    padding: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  .contacts-card .email-block a {
+    color: #f4e4c1;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .contacts-card .email-block a:hover { color: #d4af37; }
+  
+  /* ПОДВАЛ */
+  footer {
+    background: #0a0303;
+    padding: 30px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    margin-top: 40px;
+  }
+  
+  /* МОДАЛКА */
+  #photoModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  #photoModal img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+  }
+  #photoModal .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #d4af37;
+    font-size: 40px;
+    cursor: pointer;
+  }
+  
+  /* POPUP */
+  #signupPopup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  #signupPopup .popup-content {
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    border: 2px solid #d4af37;
+    padding: 35px;
+    max-width: 400px;
+    text-align: center;
+    margin: 20px;
+  }
+  #signupPopup h3 {
+    color: #d4af37;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  #signupPopup p {
+    color: #f4e4c1;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 600px) {
+    nav a { margin: 0 8px; font-size: 11px; }
+    section { padding: 25px 15px; }
+    header { padding: 20px 15px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
 
+<!-- ШАПКА -->
+<header>
+  <h1>⚔ Фехтуют Все</h1>
+  <div class="subtitle">Серия любительских турниров по спортивному фехтованию</div>
+  <div class="club">СФК «Виктория» · Новосибирск</div>
+  <button class="cta-button" onclick="showSignup()">✦ Записаться на турнир</button>
+</header>
+
+<!-- НАВИГАЦИЯ -->
+<nav>
+  <a href="#stages">Этапы</a>
+  <a href="#champions">Чемпионы</a>
+  <a href="#rating">Рейтинг</a>
+  <a href="#gallery">Фото</a>
+  <a href="#contacts">Контакты</a>
+</nav>
+
+<!-- ЭТАПЫ -->
+<section id="stages">
+  <h2 class="section-title">Этапы турнира</h2>
+  <div class="section-divider"></div>
+  
+  <div class="season-label">✦ Сезон 2024–2025 ✦</div>
+  <div class="stages-grid">
+    <div class="stage-card">
+      <div class="num">ЭТАП I</div>
+      <div class="date">16 ноября 2024</div>
+      <div class="status">Завершён</div>
+    </div>
+    <div class="stage-card">
+      <div class="num">ЭТАП II</div>
+      <div class="date">22 февраля 2025</div>
+      <div class="status">Завершён</div>
+    </div>
+    <div class="stage-card">
+      <div class="num">ЭТАП III</div>
+      <div class="date">3 мая 2025</div>
+      <div class="status">Завершён</div>
+    </div>
+    <div class="stage-card">
+      <div class="num">ФИНАЛ</div>
+      <div class="date">20 сентября 2025</div>
+      <div class="status">Завершён</div>
+    </div>
+  </div>
+  
+  <div class="season-label">✦ Сезон 2026 ✦</div>
+  <div class="stages-grid">
+    <div class="stage-card">
+      <div class="num">ЭТАП I</div>
+      <div class="date">31 января 2026</div>
+      <div class="status">Завершён</div>
+    </div>
+    <div class="stage-card">
+      <div class="num">ЭТАП II</div>
+      <div class="date">11 апреля 2026</div>
+      <div class="status">Завершён</div>
+    </div>
+    <div class="stage-card">
+      <div class="num">ЭТАП III</div>
+      <div class="date">— скоро —</div>
+      <div class="status">Ожидается</div>
+    </div>
+    <div class="stage-card">
+      <div class="num">ФИНАЛ</div>
+      <div class="date">— скоро —</div>
+      <div class="status">Ожидается</div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАЛ ЧЕМПИОНОВ -->
+<section class="champions-section" id="champions">
+  <div class="champions-inner">
+    <h2 class="section-title">Зал Чемпионов</h2>
+    <div class="section-divider"></div>
+    
+    <div class="champions-grid">
+      <div class="champion-card">
+        <div class="crown">👑</div>
+        <div class="category">ЖЕНЩИНЫ · ЛЮБИТЕЛЬСКАЯ</div>
+        <div class="name">Крамина Татьяна</div>
+        <div class="year">Чемпион сезона 2024–2025</div>
+      </div>
+      <div class="champion-card">
+        <div class="crown">👑</div>
+        <div class="category">МУЖЧИНЫ · ЛЮБИТЕЛЬСКАЯ</div>
+        <div class="name">Голубцов Георгий</div>
+        <div class="year">Чемпион сезона 2024–2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- РЕЙТИНГ 2026 -->
+<section id="rating">
+  <h2 class="section-title">Рейтинг сезона 2026</h2>
+  <div class="section-divider"></div>
+  <p style="text-align:center; color:#d4af37; font-size:13px; margin-bottom:20px;">После II этапа (январь + апрель 2026)</p>
+  
+  <!-- ЖЕНЩИНЫ ОБЩАЯ -->
+  <div class="rating-category">♀ Женщины · Общая категория</div>
+  <table class="rating-table">
+    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
+    <tbody>
+      <tr><td class="place-1">🥇 1</td><td>Кочина Дарья</td><td>32</td></tr>
+      <tr><td class="place-2">🥈 2</td><td>Скрипкина Татьяна</td><td>17</td></tr>
+      <tr><td class="place-3">🥉 3</td><td>Цыганова Антонина</td><td>14</td></tr>
+      <tr><td>4</td><td>Котельникова Александра</td><td>14</td></tr>
+      <tr><td>5</td><td>Чернышова Татьяна</td><td>13</td></tr>
+      <tr><td>6</td><td>Крамина Татьяна</td><td>10</td></tr>
+      <tr><td>7</td><td>Родикова Екатерина</td><td>10</td></tr>
+      <tr><td>8</td><td>Митюкова Юлия</td><td>7</td></tr>
+      <tr><td>9</td><td>Филипова Лилия</td><td>7</td></tr>
+      <tr><td>10</td><td>Усова Анна</td><td>7</td></tr>
+      <tr><td>11</td><td>Кисилева Татьяна</td><td>7</td></tr>
+      <tr><td>12</td><td>Попова Анна</td><td>7</td></tr>
+      <tr><td>13</td><td>Семиколенова Елизавета</td><td>7</td></tr>
+      <tr><td>14</td><td>Арефьева Ольга</td><td>7</td></tr>
+      <tr><td>15</td><td>Баранова Екатерина</td><td>4</td></tr>
+      <tr><td>16</td><td>Шиганцова Ирина</td><td>4</td></tr>
+    </tbody>
+  </table>
+  
+  <!-- ЖЕНЩИНЫ ЛЮБИТЕЛЬСКАЯ -->
+  <div class="rating-category">♀ Женщины · Любительская</div>
+  <table class="rating-table">
+    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
+    <tbody>
+      <tr><td class="place-1">🥇 1</td><td>Скрипкина Татьяна</td><td>26</td></tr>
+      <tr><td class="place-2">🥈 2</td><td>Котельникова Александра</td><td>23</td></tr>
+      <tr><td class="place-3">🥉 3</td><td>Цыганова Антонина</td><td>17</td></tr>
+      <tr><td>4</td><td>Крамина Татьяна</td><td>16</td></tr>
+      <tr><td>5</td><td>Митюкова Юлия</td><td>10</td></tr>
+      <tr><td>6</td><td>Кисилева Татьяна</td><td>10</td></tr>
+      <tr><td>7</td><td>Филипова Лилия</td><td>7</td></tr>
+      <tr><td>8</td><td>Усова Анна</td><td>7</td></tr>
+      <tr><td>9</td><td>Баранова Екатерина</td><td>7</td></tr>
+      <tr><td>10</td><td>Шиганцова Ирина</td><td>7</td></tr>
+      <tr><td>11</td><td>Семиколенова Елизавета</td><td>7</td></tr>
+      <tr><td>12</td><td>Арефьева Ольга</td><td>7</td></tr>
+      <tr><td>13</td><td>Попова Анна</td><td>4</td></tr>
+    </tbody>
+  </table>
+  
+  <!-- МУЖЧИНЫ ОБЩАЯ -->
+  <div class="rating-category">♂ Мужчины · Общая категория</div>
+  <table class="rating-table">
+    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
+    <tbody>
+      <tr><td class="place-1">🥇 1</td><td>Чесноков Сергей</td><td>29</td></tr>
+      <tr><td class="place-2">🥈 2</td><td>Сейфулин Григорий</td><td>20</td></tr>
+      <tr><td class="place-3">🥉 3</td><td>Голубцов Георгий</td><td>17</td></tr>
+      <tr><td>4</td><td>Косолапов Дмитрий</td><td>17</td></tr>
+      <tr><td>5</td><td>Еловиков Георгий</td><td>16</td></tr>
+      <tr><td>6</td><td>Скрипкин Сергей</td><td>14</td></tr>
+      <tr><td>7</td><td>Сундырин Григорий</td><td>11</td></tr>
+      <tr><td>8</td><td>Косолапов Алексей</td><td>10</td></tr>
+      <tr><td>9</td><td>Косолапов Александр</td><td>10</td></tr>
+      <tr><td>10</td><td>Игнатухин Евгений</td><td>8</td></tr>
+      <tr><td>11</td><td>Бочарников Иван</td><td>8</td></tr>
+      <tr><td>12</td><td>Горбунов Алексей</td><td>8</td></tr>
+      <tr><td>13</td><td>Ямалетдинов Ильдар</td><td>8</td></tr>
+      <tr><td>14</td><td>Левшин Вадим</td><td>7</td></tr>
+      <tr><td>15</td><td>Незамятин Антон</td><td>7</td></tr>
+      <tr><td>16</td><td>Кузнецов Александр</td><td>4</td></tr>
+      <tr><td>17</td><td>Плюшкин Серафим</td><td>4</td></tr>
+      <tr><td>18</td><td>Чирков Максим</td><td>4</td></tr>
+      <tr><td>19</td><td>Трофимов Михаил</td><td>4</td></tr>
+      <tr><td>20</td><td>Умнов Дмитрий</td><td>4</td></tr>
+      <tr><td>21</td><td>Жуков Кирилл</td><td>4</td></tr>
+      <tr><td>22</td><td>Мальцев Даниил</td><td>4</td></tr>
+      <tr><td>23</td><td>Хозяйкин Павел</td><td>2</td></tr>
+    </tbody>
+  </table>
+  
+  <!-- МУЖЧИНЫ ЛЮБИТЕЛЬСКАЯ -->
+  <div class="rating-category">♂ Мужчины · Любительская</div>
+  <table class="rating-table">
+    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
+    <tbody>
+      <tr><td class="place-1">🥇 1</td><td>Голубцов Георгий</td><td>29</td></tr>
+      <tr><td class="place-2">🥈 2</td><td>Горбунов Алексей</td><td>23</td></tr>
+      <tr><td class="place-3">🥉 3</td><td>Сундырин Григорий</td><td>23</td></tr>
+      <tr><td>4</td><td>Скрипкин Сергей</td><td>20</td></tr>
+      <tr><td>5</td><td>Игнатухин Евгений</td><td>17</td></tr>
+      <tr><td>6</td><td>Бочарников Иван</td><td>14</td></tr>
+      <tr><td>7</td><td>Ямалетдинов Ильдар</td><td>11</td></tr>
+      <tr><td>8</td><td>Незамятин Антон</td><td>7</td></tr>
+      <tr><td>9</td><td>Кузнецов Александр</td><td>7</td></tr>
+      <tr><td>10</td><td>Умнов Дмитрий</td><td>7</td></tr>
+      <tr><td>11</td><td>Хозяйкин Павел</td><td>4</td></tr>
+      <tr><td>12</td><td>Плюшкин Серафим</td><td>4</td></tr>
+      <tr><td>13</td><td>Чирков Максим</td><td>4</td></tr>
+      <tr><td>14</td><td>Жуков Кирилл</td><td>4</td></tr>
+      <tr><td>15</td><td>Мальцев Даниил</td><td>4</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ФОТОГАЛЕРЕЯ -->
+<section id="gallery">
+  <h2 class="section-title">Фотогалерея</h2>
+  <div class="section-divider"></div>
+  
+  <div class="stage-photos-title">✦ Этап I — 31 января 2026 ✦</div>
+  <div class="gallery-grid">
+    <img src="2026-05-25%2021.49.31.jpg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2048.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2049.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2051.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2052.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+  </div>
+  
+  <div class="stage-photos-title">✦ Этап II — 11 апреля 2026 ✦</div>
+  <div class="gallery-grid">
+    <img src="Изображение%2053.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2054.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2055.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2056.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+  </div>
+  
+  <div class="stage-photos-title">✦ Общая галерея ✦</div>
+  <div class="gallery-grid">
+    <img src="Изображение%2028.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2029.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2030.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2031.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2032.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2033.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2034.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2035.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2036.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2037.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2038.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2039.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2040.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2041.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2042.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2043.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2044.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2045.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2046.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2047.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+    <img src="Изображение%2050.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section id="contacts">
+  <h2 class="section-title">Контакты</h2>
+  <div class="section-divider"></div>
+  
+  <div class="contacts-card">
+    <div class="icon">⚔</div>
+    <h3>СФК «Виктория»</h3>
+    <p style="color:#f4e4c1; opacity:0.8;">Новосибирск<br>Серия турниров «Фехтуют Все»</p>
+    
+    <div class="email-block">
+      <div style="color:#d4af37; font-size:11px; letter-spacing:2px; margin-bottom:8px;">✉ EMAIL</div>
+      <a href="mailto:1968viktoria1968@mail.ru">1968viktoria1968@mail.ru</a>
+    </div>
+    
+    <button class="cta-button" onclick="showSignup()">✦ Записаться на турнир</button>
+  </div>
+</section>
+
+<!-- ПОДВАЛ -->
+<footer>
+  <div style="color:#d4af37; font-size:20px; margin-bottom:10px;">✦</div>
+  <p style="color:#f4e4c1; opacity:0.7; letter-spacing:1px; font-size:12px;">
+    © 2026 СФК «Виктория» · Серия турниров «Фехтуют Все»
+  </p>
+</footer>
+
+<!-- МОДАЛКА ФОТО -->
+<div id="photoModal" onclick="closePhoto()">
+  <span class="close">×</span>
+  <img id="modalImg" src="">
+</div>
+
+<!-- POPUP ЗАПИСИ -->
+<div id="signupPopup" onclick="if(event.target.id==='signupPopup')closeSignup()">
+  <div class="popup-content">
+    <div style="font-size:32px; margin-bottom:10px;">⏳</div>
+    <h3>Запись пока недоступна</h3>
+    <p>Ближайшая запись на турнир ещё не открыта.<br><br>Следите за анонсами или напишите нам на email:</p>
+    <a href="mailto:1968viktoria1968@mail.ru" style="color:#d4af37; text-decoration:none; font-size:14px; display:block; margin-bottom:20px;">1968viktoria1968@mail.ru</a>
+    <button class="cta-button" onclick="closeSignup()">Закрыть</button>
+  </div>
+</div>
+
+<script>
+function openPhoto(src) {
+  document.getElementById('modalImg').src = src;
+  document.getElementById('photoModal').style.display = 'flex';
+}
+
+function closePhoto() {
+  document.getElementById('photoModal').style.display = 'none';
+}
+
+function showSignup() {
+  document.getElementById('signupPopup').style.display = 'flex';
+}
+
+function closeSignup() {
+  document.getElementById('signupPopup').style.display = 'none';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closePhoto(); closeSignup(); }
+});
+</script>
+
+</body>
+</html>
