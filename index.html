@@ -121,6 +121,106 @@
     margin: 0 auto 30px;
   }
   
+  /* О СЕРИИ */
+  .about-section {
+    background: linear-gradient(180deg, #1a0808 0%, #0f0505 100%);
+    padding: 45px 20px;
+    max-width: none;
+    margin: 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  .about-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .about-lead {
+    text-align: center;
+    color: #f4e4c1;
+    font-size: clamp(14px, 1.7vw, 16px);
+    font-style: italic;
+    max-width: 750px;
+    margin: 0 auto 35px;
+    opacity: 0.95;
+    line-height: 1.7;
+  }
+  .about-lead strong {
+    color: #d4af37;
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+  .about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+  .feature-card {
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 25px 22px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .feature-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.15);
+  }
+  .feature-card .feature-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .feature-card .feature-title {
+    color: #d4af37;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .feature-card .feature-text {
+    color: #f4e4c1;
+    font-size: 14px;
+    line-height: 1.65;
+    opacity: 0.9;
+  }
+  .about-highlight {
+    background: linear-gradient(135deg, #2a1010 0%, #1a0808 100%);
+    border-left: 3px solid #d4af37;
+    border-right: 3px solid #d4af37;
+    padding: 25px 28px;
+    margin: 30px auto;
+    max-width: 850px;
+    text-align: center;
+  }
+  .about-highlight p {
+    color: #f4e4c1;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .about-highlight .accent {
+    color: #d4af37;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .about-outro {
+    text-align: center;
+    color: #f4e4c1;
+    font-size: 15px;
+    margin-top: 30px;
+    opacity: 0.95;
+    line-height: 1.7;
+  }
+  .about-outro .gold {
+    color: #d4af37;
+    letter-spacing: 1px;
+  }
+  .about-cta-wrap {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
   /* ЭТАПЫ */
   .stages-grid {
     display: grid;
@@ -384,6 +484,7 @@
     section { padding: 25px 15px; }
     header { padding: 20px 15px; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-section { padding: 30px 15px; }
   }
 </style>
 </head>
@@ -399,12 +500,77 @@
 
 <!-- НАВИГАЦИЯ -->
 <nav>
+  <a href="#about">О серии</a>
   <a href="#stages">Этапы</a>
   <a href="#champions">Чемпионы</a>
   <a href="#rating">Рейтинг</a>
   <a href="#gallery">Фото</a>
   <a href="#contacts">Контакты</a>
 </nav>
+
+<!-- О СЕРИИ -->
+<section id="about" class="about-section">
+  <div class="about-inner">
+    <h2 class="section-title">🤺 Фехтуют все!</h2>
+    <div class="section-divider"></div>
+
+    <p class="about-lead">
+      <strong>«Фехтуют все!»</strong> — серия открытых турниров по шпаге для тех, кто хочет больше фехтовать.
+      Фехтовальный клуб «Виктория» приглашает <strong>взрослых участников 18+</strong>: любителей, ветеранов и спортсменов.
+    </p>
+
+    <div class="about-features">
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <div class="feature-title">4 этапа в году</div>
+        <div class="feature-text">
+          Серия включает четыре этапа в течение сезона. Результаты идут в общий сезонный рейтинг — это не разовый старт, а возможность регулярно выходить на дорожку.
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">⚔</span>
+        <div class="feature-title">Две параллельные сетки</div>
+        <div class="feature-text">
+          Основная сетка — для всех участников. Любительская — для тех, кто подходит под критерии любительского зачёта. Любители фехтуют сразу в двух ветках.
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📈</span>
+        <div class="feature-title">Опыт и прогресс</div>
+        <div class="feature-text">
+          Набирайте соревновательный опыт, следите за своим прогрессом от этапа к этапу и боритесь за место в сезонном рейтинге клуба.
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🏆</span>
+        <div class="feature-title">Больше шансов на награды</div>
+        <div class="feature-text">
+          Участие в двух сетках одновременно — это больше боёв, больше практики и больше возможностей побороться за призовые места.
+        </div>
+      </div>
+    </div>
+
+    <div class="about-highlight">
+      <p>
+        Это формат для тех, кто хочет <span class="accent">соревноваться без лишнего давления</span>,
+        пробовать свои силы, расти в фехтовании и быть частью взрослого любительского сообщества.
+      </p>
+    </div>
+
+    <p class="about-outro">
+      Шпага подходит для занятий <span class="gold">в любом возрасте</span> — турнир открыт для всех,
+      кто хочет выйти на дорожку и получить настоящий соревновательный опыт.<br><br>
+      Ждём всех желающих на турнирах серии <span class="gold">«Фехтуют все!»</span> в фехтовальном клубе «Виктория». 🤺
+    </p>
+
+    <div class="about-cta-wrap">
+      <button class="cta-button" onclick="showSignup()">✦ Записаться на турнир</button>
+    </div>
+  </div>
+</section>
 
 <!-- ЭТАПЫ -->
 <section id="stages">
@@ -477,232 +643,4 @@
         <div class="crown">👑</div>
         <div class="category">МУЖЧИНЫ · ЛЮБИТЕЛЬСКАЯ</div>
         <div class="name">Голубцов Георгий</div>
-        <div class="year">Чемпион сезона 2024–2025</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- РЕЙТИНГ 2026 -->
-<section id="rating">
-  <h2 class="section-title">Рейтинг сезона 2026</h2>
-  <div class="section-divider"></div>
-  <p style="text-align:center; color:#d4af37; font-size:13px; margin-bottom:20px;">После II этапа (январь + апрель 2026)</p>
-  
-  <!-- ЖЕНЩИНЫ ОБЩАЯ -->
-  <div class="rating-category">♀ Женщины · Общая категория</div>
-  <table class="rating-table">
-    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
-    <tbody>
-      <tr><td class="place-1">🥇 1</td><td>Кочина Дарья</td><td>32</td></tr>
-      <tr><td class="place-2">🥈 2</td><td>Скрипкина Татьяна</td><td>17</td></tr>
-      <tr><td class="place-3">🥉 3</td><td>Цыганова Антонина</td><td>14</td></tr>
-      <tr><td>4</td><td>Котельникова Александра</td><td>14</td></tr>
-      <tr><td>5</td><td>Чернышова Татьяна</td><td>13</td></tr>
-      <tr><td>6</td><td>Крамина Татьяна</td><td>10</td></tr>
-      <tr><td>7</td><td>Родикова Екатерина</td><td>10</td></tr>
-      <tr><td>8</td><td>Митюкова Юлия</td><td>7</td></tr>
-      <tr><td>9</td><td>Филипова Лилия</td><td>7</td></tr>
-      <tr><td>10</td><td>Усова Анна</td><td>7</td></tr>
-      <tr><td>11</td><td>Кисилева Татьяна</td><td>7</td></tr>
-      <tr><td>12</td><td>Попова Анна</td><td>7</td></tr>
-      <tr><td>13</td><td>Семиколенова Елизавета</td><td>7</td></tr>
-      <tr><td>14</td><td>Арефьева Ольга</td><td>7</td></tr>
-      <tr><td>15</td><td>Баранова Екатерина</td><td>4</td></tr>
-      <tr><td>16</td><td>Шиганцова Ирина</td><td>4</td></tr>
-    </tbody>
-  </table>
-  
-  <!-- ЖЕНЩИНЫ ЛЮБИТЕЛЬСКАЯ -->
-  <div class="rating-category">♀ Женщины · Любительская</div>
-  <table class="rating-table">
-    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
-    <tbody>
-      <tr><td class="place-1">🥇 1</td><td>Скрипкина Татьяна</td><td>26</td></tr>
-      <tr><td class="place-2">🥈 2</td><td>Котельникова Александра</td><td>23</td></tr>
-      <tr><td class="place-3">🥉 3</td><td>Цыганова Антонина</td><td>17</td></tr>
-      <tr><td>4</td><td>Крамина Татьяна</td><td>16</td></tr>
-      <tr><td>5</td><td>Митюкова Юлия</td><td>10</td></tr>
-      <tr><td>6</td><td>Кисилева Татьяна</td><td>10</td></tr>
-      <tr><td>7</td><td>Филипова Лилия</td><td>7</td></tr>
-      <tr><td>8</td><td>Усова Анна</td><td>7</td></tr>
-      <tr><td>9</td><td>Баранова Екатерина</td><td>7</td></tr>
-      <tr><td>10</td><td>Шиганцова Ирина</td><td>7</td></tr>
-      <tr><td>11</td><td>Семиколенова Елизавета</td><td>7</td></tr>
-      <tr><td>12</td><td>Арефьева Ольга</td><td>7</td></tr>
-      <tr><td>13</td><td>Попова Анна</td><td>4</td></tr>
-    </tbody>
-  </table>
-  
-  <!-- МУЖЧИНЫ ОБЩАЯ -->
-  <div class="rating-category">♂ Мужчины · Общая категория</div>
-  <table class="rating-table">
-    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
-    <tbody>
-      <tr><td class="place-1">🥇 1</td><td>Чесноков Сергей</td><td>29</td></tr>
-      <tr><td class="place-2">🥈 2</td><td>Сейфулин Григорий</td><td>20</td></tr>
-      <tr><td class="place-3">🥉 3</td><td>Голубцов Георгий</td><td>17</td></tr>
-      <tr><td>4</td><td>Косолапов Дмитрий</td><td>17</td></tr>
-      <tr><td>5</td><td>Еловиков Георгий</td><td>16</td></tr>
-      <tr><td>6</td><td>Скрипкин Сергей</td><td>14</td></tr>
-      <tr><td>7</td><td>Сундырин Григорий</td><td>11</td></tr>
-      <tr><td>8</td><td>Косолапов Алексей</td><td>10</td></tr>
-      <tr><td>9</td><td>Косолапов Александр</td><td>10</td></tr>
-      <tr><td>10</td><td>Игнатухин Евгений</td><td>8</td></tr>
-      <tr><td>11</td><td>Бочарников Иван</td><td>8</td></tr>
-      <tr><td>12</td><td>Горбунов Алексей</td><td>8</td></tr>
-      <tr><td>13</td><td>Ямалетдинов Ильдар</td><td>8</td></tr>
-      <tr><td>14</td><td>Левшин Вадим</td><td>7</td></tr>
-      <tr><td>15</td><td>Незамятин Антон</td><td>7</td></tr>
-      <tr><td>16</td><td>Кузнецов Александр</td><td>4</td></tr>
-      <tr><td>17</td><td>Плюшкин Серафим</td><td>4</td></tr>
-      <tr><td>18</td><td>Чирков Максим</td><td>4</td></tr>
-      <tr><td>19</td><td>Трофимов Михаил</td><td>4</td></tr>
-      <tr><td>20</td><td>Умнов Дмитрий</td><td>4</td></tr>
-      <tr><td>21</td><td>Жуков Кирилл</td><td>4</td></tr>
-      <tr><td>22</td><td>Мальцев Даниил</td><td>4</td></tr>
-      <tr><td>23</td><td>Хозяйкин Павел</td><td>2</td></tr>
-    </tbody>
-  </table>
-  
-  <!-- МУЖЧИНЫ ЛЮБИТЕЛЬСКАЯ -->
-  <div class="rating-category">♂ Мужчины · Любительская</div>
-  <table class="rating-table">
-    <thead><tr><th>Место</th><th>Имя</th><th>Очки</th></tr></thead>
-    <tbody>
-      <tr><td class="place-1">🥇 1</td><td>Голубцов Георгий</td><td>29</td></tr>
-      <tr><td class="place-2">🥈 2</td><td>Горбунов Алексей</td><td>23</td></tr>
-      <tr><td class="place-3">🥉 3</td><td>Сундырин Григорий</td><td>23</td></tr>
-      <tr><td>4</td><td>Скрипкин Сергей</td><td>20</td></tr>
-      <tr><td>5</td><td>Игнатухин Евгений</td><td>17</td></tr>
-      <tr><td>6</td><td>Бочарников Иван</td><td>14</td></tr>
-      <tr><td>7</td><td>Ямалетдинов Ильдар</td><td>11</td></tr>
-      <tr><td>8</td><td>Незамятин Антон</td><td>7</td></tr>
-      <tr><td>9</td><td>Кузнецов Александр</td><td>7</td></tr>
-      <tr><td>10</td><td>Умнов Дмитрий</td><td>7</td></tr>
-      <tr><td>11</td><td>Хозяйкин Павел</td><td>4</td></tr>
-      <tr><td>12</td><td>Плюшкин Серафим</td><td>4</td></tr>
-      <tr><td>13</td><td>Чирков Максим</td><td>4</td></tr>
-      <tr><td>14</td><td>Жуков Кирилл</td><td>4</td></tr>
-      <tr><td>15</td><td>Мальцев Даниил</td><td>4</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- ФОТОГАЛЕРЕЯ -->
-<section id="gallery">
-  <h2 class="section-title">Фотогалерея</h2>
-  <div class="section-divider"></div>
-  
-  <div class="stage-photos-title">✦ Этап I — 31 января 2026 ✦</div>
-  <div class="gallery-grid">
-    <img src="2026-05-25%2021.49.31.jpg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2048.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2049.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2051.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2052.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-  </div>
-  
-  <div class="stage-photos-title">✦ Этап II — 11 апреля 2026 ✦</div>
-  <div class="gallery-grid">
-    <img src="Изображение%2053.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2054.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2055.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2056.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-  </div>
-  
-  <div class="stage-photos-title">✦ Общая галерея ✦</div>
-  <div class="gallery-grid">
-    <img src="Изображение%2028.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2029.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2030.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2031.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2032.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2033.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2034.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2035.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2036.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2037.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2038.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2039.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2040.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2041.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2042.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2043.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2044.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2045.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2046.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2047.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-    <img src="Изображение%2050.jpeg" onclick="openPhoto(this.src)" onerror="this.style.display='none'">
-  </div>
-</section>
-
-<!-- КОНТАКТЫ -->
-<section id="contacts">
-  <h2 class="section-title">Контакты</h2>
-  <div class="section-divider"></div>
-  
-  <div class="contacts-card">
-    <div class="icon">⚔</div>
-    <h3>СФК «Виктория»</h3>
-    <p style="color:#f4e4c1; opacity:0.8;">Новосибирск<br>Серия турниров «Фехтуют Все»</p>
-    
-    <div class="email-block">
-      <div style="color:#d4af37; font-size:11px; letter-spacing:2px; margin-bottom:8px;">✉ EMAIL</div>
-      <a href="mailto:1968viktoria1968@mail.ru">1968viktoria1968@mail.ru</a>
-    </div>
-    
-    <button class="cta-button" onclick="showSignup()">✦ Записаться на турнир</button>
-  </div>
-</section>
-
-<!-- ПОДВАЛ -->
-<footer>
-  <div style="color:#d4af37; font-size:20px; margin-bottom:10px;">✦</div>
-  <p style="color:#f4e4c1; opacity:0.7; letter-spacing:1px; font-size:12px;">
-    © 2026 СФК «Виктория» · Серия турниров «Фехтуют Все»
-  </p>
-</footer>
-
-<!-- МОДАЛКА ФОТО -->
-<div id="photoModal" onclick="closePhoto()">
-  <span class="close">×</span>
-  <img id="modalImg" src="">
-</div>
-
-<!-- POPUP ЗАПИСИ -->
-<div id="signupPopup" onclick="if(event.target.id==='signupPopup')closeSignup()">
-  <div class="popup-content">
-    <div style="font-size:32px; margin-bottom:10px;">⏳</div>
-    <h3>Запись пока недоступна</h3>
-    <p>Ближайшая запись на турнир ещё не открыта.<br><br>Следите за анонсами или напишите нам на email:</p>
-    <a href="mailto:1968viktoria1968@mail.ru" style="color:#d4af37; text-decoration:none; font-size:14px; display:block; margin-bottom:20px;">1968viktoria1968@mail.ru</a>
-    <button class="cta-button" onclick="closeSignup()">Закрыть</button>
-  </div>
-</div>
-
-<script>
-function openPhoto(src) {
-  document.getElementById('modalImg').src = src;
-  document.getElementById('photoModal').style.display = 'flex';
-}
-
-function closePhoto() {
-  document.getElementById('photoModal').style.display = 'none';
-}
-
-function showSignup() {
-  document.getElementById('signupPopup').style.display = 'flex';
-}
-
-function closeSignup() {
-  document.getElementById('signupPopup').style.display = 'none';
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closePhoto(); closeSignup(); }
-});
-</script>
-
-</body>
-</html>
+        <div class="year
